@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BAD2DCB503F001EDA09 /* Inject */; };
+		E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BB02DCB506A001EDA09 /* InjectionNext */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E50DF97F2DCB4E5300DAB5CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */,
+				E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = MonteWatchlist;
 			packageProductDependencies = (
+				E5118BAD2DCB503F001EDA09 /* Inject */,
+				E5118BB02DCB506A001EDA09 /* InjectionNext */,
 			);
 			productName = MonteWatchlist;
 			productReference = E50DF96F2DCB4E5200DAB5CC /* MonteWatchlist.app */;
@@ -195,6 +204,10 @@
 			);
 			mainGroup = E50DF9662DCB4E5200DAB5CC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E5118BAC2DCB503F001EDA09 /* XCRemoteSwiftPackageReference "Inject" */,
+				E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E50DF9702DCB4E5200DAB5CC /* Products */;
 			projectDirPath = "";
@@ -398,6 +411,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PP2K97M73A;
+				EMIT_FRONTEND_COMMAND_LINES = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -410,6 +424,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.rain.MonteWatchlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -426,6 +444,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PP2K97M73A;
+				EMIT_FRONTEND_COMMAND_LINES = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -558,6 +577,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E5118BAC2DCB503F001EDA09 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.2;
+			};
+		};
+		E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnno1962/InjectionNext";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E5118BAD2DCB503F001EDA09 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5118BAC2DCB503F001EDA09 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
+		E5118BB02DCB506A001EDA09 /* InjectionNext */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */;
+			productName = InjectionNext;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E50DF9672DCB4E5200DAB5CC /* Project object */;
 }
