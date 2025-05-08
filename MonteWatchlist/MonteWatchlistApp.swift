@@ -53,10 +53,15 @@ struct MonteWatchlistApp: App {
             public func enableInjection() -> some SwiftUI.View {
                 return eraseToAnyView()
             }
-            public func onInjection(bumpState: @escaping () -> Void) -> some SwiftUI.View {
+            public func onInjection(bumpState: @escaping () -> Void)
+                -> some SwiftUI.View
+            {
                 return
                     self
-                    .onReceive(InjectionObserver.shared.publisher, perform: bumpState)
+                    .onReceive(
+                        InjectionObserver.shared.publisher,
+                        perform: bumpState
+                    )
                     .eraseToAnyView()
             }
         }
@@ -78,7 +83,9 @@ struct MonteWatchlistApp: App {
             @inline(__always)
             public func enableInjection() -> some SwiftUI.View { return self }
             @inline(__always)
-            public func onInjection(bumpState: @escaping () -> Void) -> some SwiftUI.View {
+            public func onInjection(bumpState: @escaping () -> Void)
+                -> some SwiftUI.View
+            {
                 return self
             }
         }

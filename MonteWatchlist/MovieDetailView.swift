@@ -5,12 +5,11 @@
 //  Created by Ali Ahmad Fahrezy on 07/05/25.
 //
 
-
 import SwiftUI
 
 struct MovieDetailView: View {
     let movie: Movie
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -26,18 +25,18 @@ struct MovieDetailView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.bottom)
-                
+
                 // Title and year
                 HStack(alignment: .firstTextBaseline) {
                     Text(movie.title)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    
+
                     Text("(\(movie.year))")
                         .font(.title2)
                         .foregroundColor(.secondary)
                 }
-                
+
                 // Genres
                 HStack {
                     ForEach(movie.genres, id: \.self) { genre in
@@ -49,12 +48,12 @@ struct MovieDetailView: View {
                             .cornerRadius(20)
                     }
                 }
-                
+
                 // Description
                 Text(movie.description)
                     .font(.body)
                     .lineSpacing(5)
-                
+
                 Spacer()
             }
             .padding()
@@ -65,7 +64,7 @@ struct MovieDetailView: View {
     }
 
     #if DEBUG
-    @ObserveInjection var forceRedraw
+        @ObserveInjection var forceRedraw
     #endif
 }
 
