@@ -10,13 +10,37 @@ import SwiftUI
 
 @main
 struct MonteWatchlistApp: App {
+
+    // MARK: - Core Data Stack
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            Movie.self
+        ])
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
+
+        do {
+            return try ModelContainer(
+                for: schema,
+                configurations: [modelConfiguration]
+            )
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+
+    // MARK: - App Lifecycle
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(sharedModelContainer)
     }
 }
 
+// Injection
 #if canImport(HotSwiftUI)
     @_exported import HotSwiftUI
 #elseif canImport(Inject)
