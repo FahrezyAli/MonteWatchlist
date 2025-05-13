@@ -1,20 +1,43 @@
+//
+//  ContentView.swift
+//  MonteWatchlist
+//
+//  Created by Ali Ahmad Fahrezy on 07/05/25.
+//
+
+import CachedAsyncImage
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var movies: [Movie]
     @State private var searchText = ""
     @State private var selectedGenre = "All"
 
-    let allGenres: [String] = {
-        var genres = ["All"]
-        let movieGenres = Set(Movie.sampleData.flatMap { $0.genres })
-        genres.append(contentsOf: movieGenres.sorted())
-        return genres
-    }()
+    // Insert placeholder movies if the database is empty
+    private func insertPlaceholdersIfNeeded() {
+        // Only insert if database is empty
+        guard movies.isEmpty else { return }
+
+        let placeholders = Movie.sampleData
+
+        for movie in placeholders {
+            modelContext.insert(movie)
+        }
+
+        try? modelContext.save()
+    }
+
+    // List of all genres
+    var allGenres: [String] {
+        let movieGenres = Set(movies.flatMap { $0.genres })
+        return ["All"] + movieGenres.sorted()
+    }
 
     // Filtered movies based on search and genre selection
     var filteredMovies: [Movie] {
-        var result = Movie.sampleData
-
+        var result = movies
         // Apply genre filter
         if selectedGenre != "All" {
             result = result.filter { $0.genres.contains(selectedGenre) }
@@ -24,19 +47,24 @@ struct ContentView: View {
         if !searchText.isEmpty {
             result = result.filter {
                 $0.title.localizedCaseInsensitiveContains(searchText)
-                    || $0.description.localizedCaseInsensitiveContains(
-                        searchText
-                    )
             }
         }
         return result
     }
 
-    // Group filtered movies by genre
-    var moviesByGenre: [String: [Movie]] {
-        Dictionary(grouping: filteredMovies) { movie in
-            movie.genres.first ?? "Uncategorized"
-        }
+    // Sample movie lists for different sections
+    var todaysPicks: [Movie] {
+        Array(movies.shuffled().prefix(10))
+    }
+
+    var forYou: [Movie] {
+        Array(movies.shuffled().prefix(10))
+    }
+
+    var bestThisYear: [Movie] {
+        let currentYear = Calendar.current.component(.year, from: Date())
+        let filtered = movies.filter { Int($0.year) == currentYear }
+        return Array(filtered.shuffled().prefix(10))
     }
 
     var body: some View {
@@ -66,73 +94,51 @@ struct ContentView: View {
                 }
                 .padding(.vertical, 8)
 
-                // List of movies grouped by genre
-                if filteredMovies.isEmpty {
+                // Default view when no filters are applied
+                if selectedGenre == "All" && searchText.isEmpty {
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 20) {
+                            MovieSection(
+                                title: "Today's Picks",
+                                movies: todaysPicks
+                            )
+                            MovieSection(title: "For You", movies: forYou)
+                            MovieSection(
+                                title: "Best This Year",
+                                movies: bestThisYear
+                            )
+                        }
+                        .padding(.vertical)
+                    }
+
+                    // Filtered view when filters are applied but no movies found
+                } else if filteredMovies.isEmpty {
                     ContentUnavailableView(
                         "No movies found",
                         systemImage: "film"
                     )
+
+                    // Filtered view when movies are found
                 } else {
                     ScrollView {
-                        VStack(alignment: .leading, spacing: 20) {
-                            ForEach(moviesByGenre.keys.sorted(), id: \.self) {
-                                genre in
-                                VStack(alignment: .leading) {
-                                    Text(genre)
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                        .padding(.horizontal)
-
-                                    ScrollView(
-                                        .horizontal,
-                                        showsIndicators: false
-                                    ) {
-                                        HStack(spacing: 15) {
-                                            ForEach(moviesByGenre[genre] ?? [])
-                                            { movie in
-                                                NavigationLink(
-                                                    destination:
-                                                        MovieDetailView(
-                                                            movie: movie
-                                                        )
-                                                ) {
-                                                    AsyncImage(
-                                                        url: URL(
-                                                            string: movie
-                                                                .coverImage
-                                                        )
-                                                    ) {
-                                                        image in
-                                                        image
-                                                            .resizable()
-                                                            .aspectRatio(
-                                                                contentMode:
-                                                                    .fill
-                                                            )
-                                                    } placeholder: {
-                                                        ProgressView()
-                                                    }
-                                                    .frame(
-                                                        width: 150,
-                                                        height: 220
-                                                    )
-                                                    .cornerRadius(10)
-                                                    .shadow(radius: 5)
-                                                }
-                                            }
-                                        }
-                                        .padding(.horizontal)
-                                    }
-                                }
+                        LazyVGrid(
+                            columns: [
+                                GridItem(.flexible()), GridItem(.flexible()),
+                            ],
+                            spacing: 16
+                        ) {
+                            ForEach(filteredMovies) { movie in
+                                MovieCard(movie: movie)
                             }
                         }
-                        .padding(.vertical)
+                        .padding()
                     }
                 }
             }
-            .navigationTitle("Movies")
+            .navigationTitle("Monte's Watchlist")
         }
         .enableInjection()
+        .onAppear(perform: insertPlaceholdersIfNeeded)
     }
 
     #if DEBUG
@@ -182,6 +188,71 @@ struct SearchBar: View {
     #endif
 }
 
+struct MovieCard: View {
+    let movie: Movie
+
+    var body: some View {
+        VStack {
+            NavigationLink(
+                destination: MovieDetailView(
+                    movie: movie
+                )
+            ) {
+                CachedAsyncImage(
+                    url: URL(string: movie.poster)
+                ) {
+                    image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 150, height: 220)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+            }
+            Text(movie.title)
+                .font(.headline)
+                .lineLimit(1)
+        }.frame(width: 150, height: 260)
+            .enableInjection()
+    }
+
+    #if DEBUG
+        @ObserveInjection var forceRedraw
+    #endif
+}
+
+struct MovieSection: View {
+    let title: String
+    let movies: [Movie]
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.horizontal)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 15) {
+                    ForEach(movies) { movie in
+                        MovieCard(movie: movie)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+        .enableInjection()
+    }
+
+    #if DEBUG
+        @ObserveInjection var forceRedraw
+    #endif
+}
+
 #Preview {
     ContentView()
+        .modelContainer(for: Movie.self, inMemory: true)
 }
