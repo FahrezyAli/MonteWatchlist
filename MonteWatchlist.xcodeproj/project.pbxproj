@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BAD2DCB503F001EDA09 /* Inject */; };
 		E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BB02DCB506A001EDA09 /* InjectionNext */; };
+		E55A42CA2DD334960094EA51 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E55A42C92DD334960094EA51 /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55A42CA2DD334960094EA51 /* CachedAsyncImage in Frameworks */,
 				E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */,
 				E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */,
 			);
@@ -121,6 +123,7 @@
 			packageProductDependencies = (
 				E5118BAD2DCB503F001EDA09 /* Inject */,
 				E5118BB02DCB506A001EDA09 /* InjectionNext */,
+				E55A42C92DD334960094EA51 /* CachedAsyncImage */,
 			);
 			productName = MonteWatchlist;
 			productReference = E50DF96F2DCB4E5200DAB5CC /* MonteWatchlist.app */;
@@ -207,6 +210,7 @@
 			packageReferences = (
 				E5118BAC2DCB503F001EDA09 /* XCRemoteSwiftPackageReference "Inject" */,
 				E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */,
+				E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E50DF9702DCB4E5200DAB5CC /* Products */;
@@ -595,6 +599,14 @@
 				minimumVersion = 1.3.1;
 			};
 		};
+		E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -607,6 +619,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */;
 			productName = InjectionNext;
+		};
+		E55A42C92DD334960094EA51 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
