@@ -5,6 +5,7 @@
 //  Created by Ali Ahmad Fahrezy on 07/05/25.
 //
 
+import CachedAsyncImage
 import SwiftUI
 
 struct MovieDetailView: View {
@@ -14,10 +15,10 @@ struct MovieDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 // Cover image
-                AsyncImage(url: URL(string: movie.coverImage)) { image in
+                CachedAsyncImage(url: URL(string: movie.poster)) { image in
                     image
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
                         .cornerRadius(10)
                         .shadow(radius: 5)
                 } placeholder: {
@@ -50,7 +51,7 @@ struct MovieDetailView: View {
                 }
 
                 // Description
-                Text(movie.description)
+                Text(movie.plot)
                     .font(.body)
                     .lineSpacing(5)
 
