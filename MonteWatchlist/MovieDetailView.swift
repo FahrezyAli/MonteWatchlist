@@ -11,6 +11,7 @@ import SwiftUI
 struct MovieDetailView: View {
     let movie: Movie
 
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -44,7 +45,11 @@ struct MovieDetailView: View {
                         Text(genre)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
-                            .background(Color.blue.opacity(0.2))
+                            .background(
+                                colorScheme == .dark
+                                    ? Color.blue.opacity(0.3)
+                                    : Color.blue.opacity(0.1)
+                            )
                             .foregroundColor(.blue)
                             .cornerRadius(20)
                     }
@@ -59,6 +64,7 @@ struct MovieDetailView: View {
             }
             .padding()
         }
+        .preferredColorScheme(.dark)
         .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
         .enableInjection()

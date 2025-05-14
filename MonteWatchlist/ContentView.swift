@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.colorScheme) private var colorScheme
     @Query private var movies: [Movie]
     @State private var searchText = ""
     @State private var selectedGenre = "All"
@@ -62,9 +63,11 @@ struct ContentView: View {
     }
 
     var bestThisYear: [Movie] {
-        let currentYear = Calendar.current.component(.year, from: Date())
-        let filtered = movies.filter { Int($0.year) == currentYear }
-        return Array(filtered.shuffled().prefix(10))
+        Array(movies.shuffled().prefix(10))
+        // Uncomment the following lines to filter by current year
+        // let currentYear = Calendar.current.component(.year, from: Date())
+        // let filtered = movies.filter { Int($0.year) == currentYear }
+        // return Array(filtered.shuffled().prefix(10))
     }
 
     var body: some View {
@@ -84,9 +87,20 @@ struct ContentView: View {
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
                             .background(
-                                selectedGenre == genre ? Color.blue : Color.gray
+                                selectedGenre == genre
+                                    ? (colorScheme == .dark
+                                        ? Color.blue.opacity(0.7) : Color.blue)
+                                    : (colorScheme == .dark
+                                        ? Color.gray.opacity(0.4)
+                                        : Color.gray.opacity(0.2))
                             )
-                            .foregroundColor(.white)
+                            .foregroundColor(
+                                selectedGenre == genre
+                                    ? Color.white
+                                    : (colorScheme == .dark
+                                        ? Color.white.opacity(0.9)
+                                        : Color.primary)
+                            )
                             .cornerRadius(20)
                         }
                     }
@@ -137,6 +151,7 @@ struct ContentView: View {
             }
             .navigationTitle("Monte's Watchlist")
         }
+        .preferredColorScheme(.dark)
         .enableInjection()
         .onAppear(perform: insertPlaceholdersIfNeeded)
     }
@@ -188,6 +203,7 @@ struct SearchBar: View {
     #endif
 }
 
+// Movie card component
 struct MovieCard: View {
     let movie: Movie
 
@@ -224,6 +240,7 @@ struct MovieCard: View {
     #endif
 }
 
+// Movie section component
 struct MovieSection: View {
     let title: String
     let movies: [Movie]

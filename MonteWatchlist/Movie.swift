@@ -12,7 +12,7 @@ import SwiftData
 // such as imdbID, poster, title, year, genres, plot, and comments.
 
 @Model
-class Movie {
+final class Movie {
     @Attribute var imdbID: String
     @Attribute var poster: String
     @Attribute var title: String
