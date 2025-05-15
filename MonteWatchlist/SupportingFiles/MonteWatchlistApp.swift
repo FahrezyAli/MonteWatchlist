@@ -34,7 +34,7 @@ struct MonteWatchlistApp: App {
     // MARK: - App Lifecycle
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
         .modelContainer(sharedModelContainer)
     }

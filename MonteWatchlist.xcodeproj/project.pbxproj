@@ -10,6 +10,7 @@
 		E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BAD2DCB503F001EDA09 /* Inject */; };
 		E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BB02DCB506A001EDA09 /* InjectionNext */; };
 		E55A42CA2DD334960094EA51 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E55A42C92DD334960094EA51 /* CachedAsyncImage */; };
+		E5E341082DD58EE400D71526 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E5E341062DD58ED600D71526 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		E50DF96F2DCB4E5200DAB5CC /* MonteWatchlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonteWatchlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50DF97E2DCB4E5300DAB5CC /* MonteWatchlistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonteWatchlistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50DF9882DCB4E5300DAB5CC /* MonteWatchlistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonteWatchlistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E341062DD58ED600D71526 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -88,6 +90,7 @@
 				E50DF9812DCB4E5300DAB5CC /* MonteWatchlistTests */,
 				E50DF98B2DCB4E5300DAB5CC /* MonteWatchlistUITests */,
 				E50DF9702DCB4E5200DAB5CC /* Products */,
+				E5E341062DD58ED600D71526 /* .swiftlint.yml */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +118,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E5E341052DD58E3300D71526 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E50DF9712DCB4E5200DAB5CC /* MonteWatchlist */,
@@ -211,6 +215,7 @@
 				E5118BAC2DCB503F001EDA09 /* XCRemoteSwiftPackageReference "Inject" */,
 				E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */,
 				E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				E5E341002DD58D2100D71526 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E50DF9702DCB4E5200DAB5CC /* Products */;
@@ -229,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E341082DD58EE400D71526 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +288,10 @@
 			isa = PBXTargetDependency;
 			target = E50DF96E2DCB4E5200DAB5CC /* MonteWatchlist */;
 			targetProxy = E50DF9892DCB4E5300DAB5CC /* PBXContainerItemProxy */;
+		};
+		E5E341052DD58E3300D71526 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E5E341042DD58E3300D71526 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -607,6 +617,14 @@
 				minimumVersion = 2.1.1;
 			};
 		};
+		E5E341002DD58D2100D71526 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -624,6 +642,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
+		};
+		E5E341042DD58E3300D71526 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5E341002DD58D2100D71526 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

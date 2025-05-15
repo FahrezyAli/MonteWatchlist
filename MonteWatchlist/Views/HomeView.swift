@@ -5,11 +5,10 @@
 //  Created by Ali Ahmad Fahrezy on 07/05/25.
 //
 
-import CachedAsyncImage
 import SwiftData
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) private var colorScheme
     @Query private var movies: [Movie]
@@ -137,7 +136,7 @@ struct ContentView: View {
                     ScrollView {
                         LazyVGrid(
                             columns: [
-                                GridItem(.flexible()), GridItem(.flexible()),
+                                GridItem(.flexible()), GridItem(.flexible())
                             ],
                             spacing: 16
                         ) {
@@ -161,115 +160,7 @@ struct ContentView: View {
     #endif
 }
 
-// Search bar component
-struct SearchBar: View {
-    @Binding var text: String
-
-    var body: some View {
-        HStack {
-            TextField("Search movies...", text: $text)
-                .padding(8)
-                .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
-                            .frame(
-                                minWidth: 0,
-                                maxWidth: .infinity,
-                                alignment: .leading
-                            )
-                            .padding(.leading, 8)
-
-                        if !text.isEmpty {
-                            Button(action: {
-                                text = ""
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 8)
-                            }
-                        }
-                    }
-                )
-        }
-        .enableInjection()
-    }
-
-    #if DEBUG
-        @ObserveInjection var forceRedraw
-    #endif
-}
-
-// Movie card component
-struct MovieCard: View {
-    let movie: Movie
-
-    var body: some View {
-        VStack {
-            NavigationLink(
-                destination: MovieDetailView(
-                    movie: movie
-                )
-            ) {
-                CachedAsyncImage(
-                    url: URL(string: movie.poster)
-                ) {
-                    image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(width: 150, height: 220)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-            }
-            Text(movie.title)
-                .font(.headline)
-                .lineLimit(1)
-        }.frame(width: 150, height: 260)
-            .enableInjection()
-    }
-
-    #if DEBUG
-        @ObserveInjection var forceRedraw
-    #endif
-}
-
-// Movie section component
-struct MovieSection: View {
-    let title: String
-    let movies: [Movie]
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.horizontal)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 15) {
-                    ForEach(movies) { movie in
-                        MovieCard(movie: movie)
-                    }
-                }
-                .padding(.horizontal)
-            }
-        }
-        .enableInjection()
-    }
-
-    #if DEBUG
-        @ObserveInjection var forceRedraw
-    #endif
-}
-
 #Preview {
-    ContentView()
+    HomeView()
         .modelContainer(for: Movie.self, inMemory: true)
 }

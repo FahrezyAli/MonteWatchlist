@@ -122,6 +122,6 @@ extension Movie {
                 "Return to a world of two realities: one, everyday life; the other, what lies behind it. To find out if his reality is a construct, to truly know himself, Mr. Anderson will have to choose to follow the white rabbit once more.",
             comments:
                 "A thought-provoking sequel that explores the nature of reality."
-        ),
+        )
     ]
 }
