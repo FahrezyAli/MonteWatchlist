@@ -14,6 +14,7 @@ struct HomeView: View {
     @Query private var movies: [Movie]
     @State private var searchText = ""
     @State private var selectedGenre = "All"
+    @State private var showAddMovieWindow = false
 
     // Insert placeholder movies if the database is empty
     private func insertPlaceholdersIfNeeded() {
@@ -157,6 +158,23 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Monte's Watchlist")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            showAddMovieWindow.toggle()
+                        },
+                        label: {
+                            Image(systemName: "plus")
+                        }
+                    )
+                }
+            }
+            .sheet(isPresented: $showAddMovieWindow) {
+                AddMovieView()
+                    .environmentObject(MovieSearchViewModel())
+                    .presentationDetents([.medium])
+            }
         }
         .preferredColorScheme(.dark)
         .enableInjection()
