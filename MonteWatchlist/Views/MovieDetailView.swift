@@ -37,19 +37,22 @@ struct MovieDetailView: View {
                     VStack {
                         HStack {
                             Spacer()
-                            Button(action: {
-                                movie.isFavorite.toggle()
-                            }) {
-                                Image(
-                                    systemName:
-                                        movie.isFavorite
-                                        ? "heart.fill" : "heart"
-                                )
-                                .font(.title)
-                                .foregroundColor(
-                                    movie.isFavorite ? .red : .white
-                                )
-                            }
+                            Button(
+                                action: {
+                                    movie.isFavorite.toggle()
+                                },
+                                label: {
+                                    Image(
+                                        systemName:
+                                            movie.isFavorite
+                                            ? "heart.fill" : "heart"
+                                    )
+                                    .font(.title)
+                                    .foregroundColor(
+                                        movie.isFavorite ? .red : .white
+                                    )
+                                }
+                            )
                         }
                         Spacer()
                     }
@@ -88,17 +91,17 @@ struct MovieDetailView: View {
                 Text(movie.plot)
                     .font(.body)
                     .lineSpacing(5)
-            
+
                 // Monte's Comment
                 Text("Monte's Comment")
                     .font(.headline)
                     .padding(.top, 10)
-            
-                Text(movie.comment)
+
+                Text(movie.comment ?? "No comment")
                     .font(.body)
                     .lineSpacing(5)
                     .padding(.bottom, 10)
-            
+
                 Spacer()
             }
             .padding()
