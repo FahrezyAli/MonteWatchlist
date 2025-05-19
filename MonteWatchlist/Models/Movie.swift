@@ -13,13 +13,13 @@ import SwiftData
 
 @Model
 final class Movie {
-    @Attribute var imdbID: String
+    @Attribute(.unique) var imdbID: String
     @Attribute var poster: String
     @Attribute var title: String
     @Attribute var year: String
     @Attribute var genres: [String]
     @Attribute var plot: String
-    @Attribute var comment: String
+    @Attribute var comment: String?
     @Attribute var isFavorite: Bool
 
     init(
@@ -29,7 +29,7 @@ final class Movie {
         year: String,
         genres: [String],
         plot: String,
-        comment: String,
+        comment: String? = nil,
     ) {
         self.imdbID = imdbID
         self.poster = poster
@@ -39,6 +39,70 @@ final class Movie {
         self.plot = plot
         self.comment = comment
         self.isFavorite = false
+    }
+}
+
+// MovieDTO model
+struct MovieDTO: Codable {
+    let imdbID: String
+    let poster: String
+    let title: String
+    let year: String
+    let genres: String
+    let plot: String
+
+    enum CodingKeys: String, CodingKey {
+        case imdbID = "imdbID"
+        case poster = "Poster"
+        case title = "Title"
+        case year = "Year"
+        case genres = "Genre"
+        case plot = "Plot"
+    }
+}
+
+// SearchResultMovie model
+struct SearchResultMovie: Codable, Identifiable {
+    var id: String { imdbID }
+    let imdbID: String
+    let title: String
+    let year: String
+    let poster: String
+    let type: String
+
+    enum CodingKeys: String, CodingKey {
+        case imdbID = "imdbID"
+        case title = "Title"
+        case year = "Year"
+        case poster = "Poster"
+        case type = "Type"
+    }
+}
+
+// SearchResultResponse model
+struct SearchResultResponse: Codable {
+    let search: [SearchResultMovie]
+    let totalResults: String
+    let response: String
+
+    enum CodingKeys: String, CodingKey {
+        case search = "Search"
+        case totalResults
+        case response = "Response"
+    }
+}
+
+// Convert MovieDTO to Movie
+extension Movie {
+    convenience init(dto: MovieDTO) {
+        self.init(
+            imdbID: dto.imdbID,
+            poster: dto.poster,
+            title: dto.title,
+            year: dto.year,
+            genres: dto.genres.components(separatedBy: ", "),
+            plot: dto.plot
+        )
     }
 }
 
