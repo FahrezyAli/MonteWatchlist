@@ -32,21 +32,29 @@ struct HomeView: View {
     // List of all genres
     var allGenres: [String] {
         let movieGenres = Set(movies.flatMap { $0.genres })
-        return ["All"] + movieGenres.sorted()
+        return ["All", "Favorite"] + movieGenres.sorted()
     }
 
     // Filtered movies based on search and genre selection
     var filteredMovies: [Movie] {
         var result = movies
         // Apply genre filter
-        if selectedGenre != "All" {
-            result = result.filter { $0.genres.contains(selectedGenre) }
-        }
 
-        // Apply search filter
-        if !searchText.isEmpty {
-            result = result.filter {
-                $0.title.localizedCaseInsensitiveContains(searchText)
+        // If "Favorite" is selected, filter by favorite movies
+        if selectedGenre == "Favorite" {
+            result = result.filter { $0.isFavorite }
+        } else {
+
+            // Filter by selected genre
+            if selectedGenre != "All" {
+                result = result.filter { $0.genres.contains(selectedGenre) }
+            }
+
+            // Apply search filter
+            if !searchText.isEmpty {
+                result = result.filter {
+                    $0.title.localizedCaseInsensitiveContains(searchText)
+                }
             }
         }
         return result
@@ -54,11 +62,11 @@ struct HomeView: View {
 
     // Sample movie lists for different sections
     var todaysPicks: [Movie] {
-        Array(movies.shuffled().prefix(10))
+        Array(movies.sorted { $0.title < $1.title }.prefix(10))
     }
 
     var forYou: [Movie] {
-        Array(movies.shuffled().prefix(10))
+        Array(movies.sorted { $0.year > $1.year }.prefix(10))
     }
 
     var bestThisYear: [Movie] {
@@ -136,7 +144,7 @@ struct HomeView: View {
                     ScrollView {
                         LazyVGrid(
                             columns: [
-                                GridItem(.flexible()), GridItem(.flexible())
+                                GridItem(.flexible()), GridItem(.flexible()),
                             ],
                             spacing: 16
                         ) {
