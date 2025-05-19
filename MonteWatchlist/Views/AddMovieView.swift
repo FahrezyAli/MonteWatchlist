@@ -5,6 +5,7 @@
 //  Created by Ali Ahmad Fahrezy on 19/05/25.
 //
 
+import CachedAsyncImage
 import SwiftData
 import SwiftUI
 
@@ -55,7 +56,9 @@ struct AddMovieView: View {
                     // Selected movie view, visible when a movie is selected
                     if let selectedMovie = selectedMovie {
                         HStack {
-                            AsyncImage(url: URL(string: selectedMovie.poster)) {
+                            CachedAsyncImage(
+                                url: URL(string: selectedMovie.poster)
+                            ) {
                                 image in
                                 image.resizable()
                             } placeholder: {
@@ -119,27 +122,30 @@ struct AddMovieView: View {
                 if selectedMovie == nil && !movieSearchViewModel.movies.isEmpty
                 {
                     VStack(spacing: 0) {
-                        Spacer()
-                            .frame(height: 60)  // Adjust this to position below search bar
-
+                        Spacer().frame(height: 60)
                         List(movieSearchViewModel.movies) { movie in
-                            Button(action: {
-                                selectedMovie = movie
-                            }) {
-                                HStack {
-                                    AsyncImage(url: URL(string: movie.poster)) {
-                                        image in
-                                        image.resizable()
-                                    } placeholder: {
-                                        Color.gray
-                                    }
-                                    .frame(width: 40, height: 60)
-                                    .cornerRadius(4)
+                            Button(
+                                action: {
+                                    selectedMovie = movie
+                                },
+                                label: {
+                                    HStack {
+                                        CachedAsyncImage(
+                                            url: URL(string: movie.poster)
+                                        ) {
+                                            image in
+                                            image.resizable()
+                                        } placeholder: {
+                                            Color.gray
+                                        }
+                                        .frame(width: 40, height: 60)
+                                        .cornerRadius(4)
 
-                                    Text(movie.title)
-                                        .foregroundColor(.primary)
+                                        Text(movie.title)
+                                            .foregroundColor(.primary)
+                                    }
                                 }
-                            }
+                            )
                         }
                         .listStyle(.plain)
                         .frame(height: 200)
