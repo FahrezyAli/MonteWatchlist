@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50FCD272DDB27050028C298 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E50FCD262DDB27050028C298 /* Config.xcconfig */; };
 		E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BAD2DCB503F001EDA09 /* Inject */; };
 		E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BB02DCB506A001EDA09 /* InjectionNext */; };
 		E55A42CA2DD334960094EA51 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E55A42C92DD334960094EA51 /* CachedAsyncImage */; };
@@ -36,12 +37,26 @@
 		E50DF96F2DCB4E5200DAB5CC /* MonteWatchlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonteWatchlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50DF97E2DCB4E5300DAB5CC /* MonteWatchlistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonteWatchlistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50DF9882DCB4E5300DAB5CC /* MonteWatchlistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonteWatchlistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50FCD262DDB27050028C298 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E5E341062DD58ED600D71526 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E50FCD292DDB27730028C298 /* Exceptions for "MonteWatchlist" folder in "MonteWatchlist" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E50DF96E2DCB4E5200DAB5CC /* MonteWatchlist */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E50DF9712DCB4E5200DAB5CC /* MonteWatchlist */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E50FCD292DDB27730028C298 /* Exceptions for "MonteWatchlist" folder in "MonteWatchlist" target */,
+			);
 			path = MonteWatchlist;
 			sourceTree = "<group>";
 		};
@@ -90,6 +105,7 @@
 		E50DF9662DCB4E5200DAB5CC = {
 			isa = PBXGroup;
 			children = (
+				E50FCD262DDB27050028C298 /* Config.xcconfig */,
 				E50DF9712DCB4E5200DAB5CC /* MonteWatchlist */,
 				E50DF9812DCB4E5300DAB5CC /* MonteWatchlistTests */,
 				E50DF98B2DCB4E5300DAB5CC /* MonteWatchlistUITests */,
@@ -241,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50FCD272DDB27050028C298 /* Config.xcconfig in Resources */,
 				E5E341082DD58EE400D71526 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +322,7 @@
 /* Begin XCBuildConfiguration section */
 		E50DF9902DCB4E5300DAB5CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E50FCD262DDB27050028C298 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -369,6 +387,7 @@
 		};
 		E50DF9912DCB4E5300DAB5CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E50FCD262DDB27050028C298 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -435,6 +454,7 @@
 				EMIT_FRONTEND_COMMAND_LINES = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MonteWatchlist/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -468,6 +488,7 @@
 				EMIT_FRONTEND_COMMAND_LINES = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MonteWatchlist/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
