@@ -10,6 +10,8 @@
 		E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BAD2DCB503F001EDA09 /* Inject */; };
 		E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */ = {isa = PBXBuildFile; productRef = E5118BB02DCB506A001EDA09 /* InjectionNext */; };
 		E55A42CA2DD334960094EA51 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E55A42C92DD334960094EA51 /* CachedAsyncImage */; };
+		E57032272DDB096000966D40 /* SwiftUINavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = E57032262DDB096000966D40 /* SwiftUINavigationTransitions */; };
+		E57032292DDB096000966D40 /* UIKitNavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = E57032282DDB096000966D40 /* UIKitNavigationTransitions */; };
 		E5E341082DD58EE400D71526 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E5E341062DD58ED600D71526 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E55A42CA2DD334960094EA51 /* CachedAsyncImage in Frameworks */,
+				E57032292DDB096000966D40 /* UIKitNavigationTransitions in Frameworks */,
+				E57032272DDB096000966D40 /* SwiftUINavigationTransitions in Frameworks */,
 				E5118BAE2DCB503F001EDA09 /* Inject in Frameworks */,
 				E5118BB12DCB506A001EDA09 /* InjectionNext in Frameworks */,
 			);
@@ -128,6 +132,8 @@
 				E5118BAD2DCB503F001EDA09 /* Inject */,
 				E5118BB02DCB506A001EDA09 /* InjectionNext */,
 				E55A42C92DD334960094EA51 /* CachedAsyncImage */,
+				E57032262DDB096000966D40 /* SwiftUINavigationTransitions */,
+				E57032282DDB096000966D40 /* UIKitNavigationTransitions */,
 			);
 			productName = MonteWatchlist;
 			productReference = E50DF96F2DCB4E5200DAB5CC /* MonteWatchlist.app */;
@@ -216,6 +222,7 @@
 				E5118BAF2DCB506A001EDA09 /* XCRemoteSwiftPackageReference "InjectionNext" */,
 				E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				E5E341002DD58D2100D71526 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				E57032252DDB096000966D40 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E50DF9702DCB4E5200DAB5CC /* Products */;
@@ -617,6 +624,14 @@
 				minimumVersion = 2.1.1;
 			};
 		};
+		E57032252DDB096000966D40 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davdroman/swiftui-navigation-transitions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.1;
+			};
+		};
 		E5E341002DD58D2100D71526 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
@@ -642,6 +657,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E55A42C82DD334960094EA51 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
+		};
+		E57032262DDB096000966D40 /* SwiftUINavigationTransitions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E57032252DDB096000966D40 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
+			productName = SwiftUINavigationTransitions;
+		};
+		E57032282DDB096000966D40 /* UIKitNavigationTransitions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E57032252DDB096000966D40 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
+			productName = UIKitNavigationTransitions;
 		};
 		E5E341042DD58E3300D71526 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
