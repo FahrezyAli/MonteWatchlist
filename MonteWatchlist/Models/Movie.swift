@@ -9,7 +9,7 @@ import SwiftData
 
 // Movie model
 // This model represents a movie with its attributes
-// such as imdbID, poster, title, year, genres, plot, and comments.
+// such as imdbID, poster, title, year, genres, plot, and comment.
 
 @Model
 final class Movie {
@@ -19,7 +19,8 @@ final class Movie {
     @Attribute var year: String
     @Attribute var genres: [String]
     @Attribute var plot: String
-    @Attribute var comments: String
+    @Attribute var comment: String
+    @Attribute var isFavorite: Bool
 
     init(
         imdbID: String,
@@ -28,7 +29,7 @@ final class Movie {
         year: String,
         genres: [String],
         plot: String,
-        comments: String
+        comment: String,
     ) {
         self.imdbID = imdbID
         self.poster = poster
@@ -36,7 +37,8 @@ final class Movie {
         self.year = year
         self.genres = genres
         self.plot = plot
-        self.comments = comments
+        self.comment = comment
+        self.isFavorite = false
     }
 }
 
@@ -53,7 +55,7 @@ extension Movie {
             genres: ["Adventure", "Drama", "Sci-Fi"],
             plot:
                 "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-            comments: "A mind-bending journey through space and time."
+            comment: "A mind-bending journey through space and time.",
         ),
         Movie(
             imdbID: "tt0111161",
@@ -64,7 +66,7 @@ extension Movie {
             genres: ["Drama"],
             plot:
                 "A banker convicted of uxoricide forms a friendship over a quarter century with a hardened convict, while maintaining his innocence and trying to remain hopeful through simple compassion.",
-            comments: "A timeless tale of hope and resilience."
+            comment: "A timeless tale of hope and resilience."
         ),
         Movie(
             imdbID: "tt0468569",
@@ -75,7 +77,7 @@ extension Movie {
             genres: ["Action", "Crime", "Drama"],
             plot:
                 "When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.",
-            comments:
+            comment:
                 "An epic conclusion to Christopher Nolan's Batman trilogy."
         ),
         Movie(
@@ -87,7 +89,7 @@ extension Movie {
             genres: ["Crime", "Drama"],
             plot:
                 "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-            comments: "A cult classic with unforgettable dialogue."
+            comment: "A cult classic with unforgettable dialogue."
         ),
         Movie(
             imdbID: "tt7126948",
@@ -98,7 +100,7 @@ extension Movie {
             genres: ["Action", "Adventure", "Fantasy"],
             plot:
                 "Wonder Woman finds herself battling two opponents, Maxwell Lord, a shrewd entrepreneur, and Barbara Minerva, a friend-turned-foe. Meanwhile, she also ends up crossing paths with her love interest.",
-            comments: "A vibrant and action-packed sequel."
+            comment: "A vibrant and action-packed sequel."
         ),
         Movie(
             imdbID: "tt4154756",
@@ -109,7 +111,7 @@ extension Movie {
             genres: ["Action", "Adventure", "Sci-Fi"],
             plot:
                 "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
-            comments: "An epic crossover event that redefined superhero movies."
+            comment: "An epic crossover event that redefined superhero movies."
         ),
         Movie(
             imdbID: "tt10838180",
@@ -120,8 +122,63 @@ extension Movie {
             genres: ["Action", "Sci-Fi"],
             plot:
                 "Return to a world of two realities: one, everyday life; the other, what lies behind it. To find out if his reality is a construct, to truly know himself, Mr. Anderson will have to choose to follow the white rabbit once more.",
-            comments:
+            comment:
                 "A thought-provoking sequel that explores the nature of reality."
+        ),
+        Movie(
+            imdbID: "tt1375666",
+            poster:
+                "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjY4MF5BMl5BanBnXkFtZTcwODI5OTM0Mw@@._V1_SX300.jpg",
+            title: "Inception",
+            year: "2010",
+            genres: ["Action", "Adventure", "Sci-Fi"],
+            plot:
+                "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+            comment: "A visually stunning and mind-bending thriller."
+        ),
+        Movie(
+            imdbID: "tt0133093",
+            poster:
+                "https://m.media-amazon.com/images/M/MV5BNzQzOTk3NjAtNDQxZi00ZjQ5LWFmNTEtODM1ZTAwZDJlYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+            title: "The Matrix",
+            year: "1999",
+            genres: ["Action", "Sci-Fi"],
+            plot:
+                "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+            comment: "A groundbreaking sci-fi classic."
+        ),
+        Movie(
+            imdbID: "tt0109830",
+            poster:
+                "https://m.media-amazon.com/images/M/MV5BNWIwODRlYzUtYjYwZi00ZTAwLTg2YjMtYjQzYjYzYjYzYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+            title: "Forrest Gump",
+            year: "1994",
+            genres: ["Drama", "Romance"],
+            plot:
+                "The presidencies of Kennedy and Johnson, the Vietnam War, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+            comment: "A heartwarming story of an extraordinary life."
+        ),
+        Movie(
+            imdbID: "tt0120737",
+            poster:
+                "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtYTAwZi00ZjQ5LWFmNTEtODM1ZTAwZDJlYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+            title: "The Lord of the Rings: The Fellowship of the Ring",
+            year: "2001",
+            genres: ["Action", "Adventure", "Drama"],
+            plot:
+                "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth.",
+            comment: "An epic fantasy adventure."
+        ),
+        Movie(
+            imdbID: "tt0088763",
+            poster:
+                "https://m.media-amazon.com/images/M/MV5BMjA3N2YwYzUtYjYwZi00ZTAwLTg2YjMtYjQzYjYzYjYzYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+            title: "Back to the Future",
+            year: "1985",
+            genres: ["Adventure", "Comedy", "Sci-Fi"],
+            plot:
+                "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, Doc Brown.",
+            comment: "A fun and iconic time-travel adventure."
         )
     ]
 }
