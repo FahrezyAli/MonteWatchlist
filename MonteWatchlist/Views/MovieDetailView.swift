@@ -15,24 +15,53 @@ struct MovieDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // Cover image
-                CachedAsyncImage(url: URL(string: movie.poster)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.bottom)
+                ZStack {
+                    // Cover image
+                    CachedAsyncImage(
+                        url: URL(string: movie.poster),
+                        content: { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(10)
+                                .shadow(radius: 5)
+                        },
+                        placeholder: {
+                            ProgressView()
+                        }
+                    )
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom)
 
+                    // Favorite button
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                movie.isFavorite.toggle()
+                            }) {
+                                Image(
+                                    systemName:
+                                        movie.isFavorite
+                                        ? "heart.fill" : "heart"
+                                )
+                                .font(.title)
+                                .foregroundColor(
+                                    movie.isFavorite ? .red : .white
+                                )
+                            }
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                }
                 // Title and year
                 HStack(alignment: .firstTextBaseline) {
                     Text(movie.title)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+
+                    Spacer()
 
                     Text("(\(movie.year))")
                         .font(.title2)
@@ -59,7 +88,17 @@ struct MovieDetailView: View {
                 Text(movie.plot)
                     .font(.body)
                     .lineSpacing(5)
-
+            
+                // Monte's Comment
+                Text("Monte's Comment")
+                    .font(.headline)
+                    .padding(.top, 10)
+            
+                Text(movie.comment)
+                    .font(.body)
+                    .lineSpacing(5)
+                    .padding(.bottom, 10)
+            
                 Spacer()
             }
             .padding()
