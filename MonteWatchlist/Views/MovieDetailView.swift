@@ -12,6 +12,8 @@ struct MovieDetailView: View {
     let movie: Movie
 
     @Environment(\.colorScheme) var colorScheme
+    @State private var isEditingComment = false
+    @State private var editableComment: String = ""
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -52,7 +54,7 @@ struct MovieDetailView: View {
                                         movie.isFavorite ? .red : .white
                                     )
                                 }
-                            )
+                            ).buttonStyle(PlainButtonStyle())
                         }
                         Spacer()
                     }
@@ -97,10 +99,22 @@ struct MovieDetailView: View {
                     .font(.headline)
                     .padding(.top, 10)
 
-                Text(movie.comment ?? "No comment")
-                    .font(.body)
-                    .lineSpacing(5)
-                    .padding(.bottom, 10)
+                if isEditingComment {
+                    TextEditor(text: $editableComment)
+                        .font(.body)
+                        .lineSpacing(5)
+                        .frame(minHeight: 100)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                        )
+                        .padding(.bottom, 10)
+                } else {
+                    Text(movie.comment ?? "No comment")
+                        .font(.body)
+                        .lineSpacing(5)
+                        .padding(.bottom, 10)
+                }
 
                 Spacer()
             }
@@ -109,6 +123,38 @@ struct MovieDetailView: View {
         .preferredColorScheme(.dark)
         .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                if isEditingComment {
+                    Button("Cancel") {
+                        isEditingComment = false
+                        editableComment = movie.comment ?? ""
+                    }
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(
+                    action: {
+                        if isEditingComment {
+                            movie.comment = editableComment
+                        } else {
+                            editableComment = movie.comment ?? ""
+                        }
+                        isEditingComment.toggle()
+                    },
+                    label: {
+                        if isEditingComment {
+                            Text("Save")
+                        } else {
+                            Image(systemName: "pencil")
+                        }
+                    }
+                )
+
+            }
+        }
+        .navigationBarBackButtonHidden(isEditingComment)
+        .preferredColorScheme(.dark)
         .enableInjection()
     }
 
