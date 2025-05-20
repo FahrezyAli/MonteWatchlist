@@ -192,56 +192,56 @@ extension Movie {
         Movie(
             imdbID: "tt1375666",
             poster:
-                "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjY4MF5BMl5BanBnXkFtZTcwODI5OTM0Mw@@._V1_SX300.jpg",
+                "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
             title: "Inception",
             year: "2010",
             genres: ["Action", "Adventure", "Sci-Fi"],
             plot:
-                "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+                "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
             comment: "A visually stunning and mind-bending thriller."
         ),
         Movie(
             imdbID: "tt0133093",
             poster:
-                "https://m.media-amazon.com/images/M/MV5BNzQzOTk3NjAtNDQxZi00ZjQ5LWFmNTEtODM1ZTAwZDJlYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+                "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg",
             title: "The Matrix",
             year: "1999",
             genres: ["Action", "Sci-Fi"],
             plot:
-                "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+                "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
             comment: "A groundbreaking sci-fi classic."
         ),
         Movie(
             imdbID: "tt0109830",
             poster:
-                "https://m.media-amazon.com/images/M/MV5BNWIwODRlYzUtYjYwZi00ZTAwLTg2YjMtYjQzYjYzYjYzYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+                "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_SX300.jpg",
             title: "Forrest Gump",
             year: "1994",
             genres: ["Drama", "Romance"],
             plot:
-                "The presidencies of Kennedy and Johnson, the Vietnam War, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+                "The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
             comment: "A heartwarming story of an extraordinary life."
         ),
         Movie(
             imdbID: "tt0120737",
             poster:
-                "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtYTAwZi00ZjQ5LWFmNTEtODM1ZTAwZDJlYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+                "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_SX300.jpg",
             title: "The Lord of the Rings: The Fellowship of the Ring",
             year: "2001",
-            genres: ["Action", "Adventure", "Drama"],
+            genres: ["Adventure", "Drama", "Fantasy"],
             plot:
-                "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth.",
+                "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
             comment: "An epic fantasy adventure."
         ),
         Movie(
             imdbID: "tt0088763",
             poster:
-                "https://m.media-amazon.com/images/M/MV5BMjA3N2YwYzUtYjYwZi00ZTAwLTg2YjMtYjQzYjYzYjYzYjYzXkEyXkFqcGc@._V1_SX300.jpg",
+                "https://m.media-amazon.com/images/M/MV5BZmM3ZjE0NzctNjBiOC00MDZmLTgzMTUtNGVlOWFlOTNiZDJiXkEyXkFqcGc@._V1_SX300.jpg",
             title: "Back to the Future",
             year: "1985",
             genres: ["Adventure", "Comedy", "Sci-Fi"],
             plot:
-                "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, Doc Brown.",
+                "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.",
             comment: "A fun and iconic time-travel adventure."
         )
     ]
