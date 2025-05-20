@@ -20,7 +20,6 @@ struct MovieCard: View {
             ) {
                 CachedAsyncImage(
                     url: URL(string: movie.poster),
-                    transaction: Transaction(animation: .easeInOut)
                 ) { phase in
                     Group {
                         if let image = phase.image {
@@ -47,6 +46,9 @@ struct MovieCard: View {
                 .cornerRadius(8)
                 .contentShape(Rectangle())
             }
+            .navigationTransition(
+                .fade(.in).animation(.easeInOut(duration: 0.3))
+            )
             .buttonStyle(PlainButtonStyle())
             .highPriorityGesture(
                 TapGesture(count: 2).onEnded {

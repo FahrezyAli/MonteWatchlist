@@ -177,7 +177,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationTitle("Monte's Watchlist test")
+            .navigationTitle("Monte's Watchlist")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
