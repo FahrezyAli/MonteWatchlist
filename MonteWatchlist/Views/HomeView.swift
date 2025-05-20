@@ -196,7 +196,6 @@ struct HomeView: View {
                     .presentationDetents([.medium])
             }
         }
-        .preferredColorScheme(.dark)
         .enableInjection()
         .onAppear(perform: insertPlaceholdersIfNeeded)
     }

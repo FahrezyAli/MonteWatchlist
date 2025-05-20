@@ -120,7 +120,7 @@ struct AddMovieView: View {
                 // Overlay layer - Search results dropdown
                 if selectedMovie == nil && !movieSearchViewModel.movies.isEmpty
                 {
-                    VStack(spacing: 0) {
+                    LazyVStack(spacing: 0) {
                         Spacer().frame(height: 60)
                         List(movieSearchViewModel.movies) { movie in
                             Button(
@@ -141,6 +141,8 @@ struct AddMovieView: View {
 
                                         Text(movie.title)
                                             .foregroundColor(.primary)
+                                        Text(movie.year)
+                                            .foregroundColor(.secondary)
                                     }
                                 }
                             )
@@ -186,7 +188,6 @@ struct AddMovieView: View {
                 Text(errorMessage ?? "Unknown error")
             }
         }
-        .preferredColorScheme(.dark)
         .enableInjection()
     }
 

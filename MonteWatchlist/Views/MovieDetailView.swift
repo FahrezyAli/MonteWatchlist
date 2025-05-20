@@ -120,7 +120,6 @@ struct MovieDetailView: View {
             }
             .padding()
         }
-        .preferredColorScheme(.dark)
         .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -154,7 +153,6 @@ struct MovieDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(isEditingComment)
-        .preferredColorScheme(.dark)
         .enableInjection()
     }
 
