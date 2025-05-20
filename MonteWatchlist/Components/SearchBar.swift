@@ -36,7 +36,7 @@ struct SearchBar: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing, 8)
                                 }
-                            )
+                            ).buttonStyle(PlainButtonStyle())
                         }
                     }
                 )

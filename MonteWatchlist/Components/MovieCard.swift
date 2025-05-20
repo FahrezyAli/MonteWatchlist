@@ -12,7 +12,6 @@ import SwiftUINavigationTransitions
 // Movie card component
 struct MovieCard: View {
     let movie: Movie
-    let isFavorite: Bool = true  // Replace with actual logic
 
     var body: some View {
         VStack {
@@ -20,39 +19,46 @@ struct MovieCard: View {
                 destination: MovieDetailView(movie: movie)
             ) {
                 CachedAsyncImage(
-                    url: URL(string: movie.poster)
-                ) { image in
-                    ZStack(alignment: .bottomTrailing) {
-                        image
-                            .resizable()
-                            .scaledToFit()
-
-                        if movie.isFavorite {
-                            Image(systemName: "heart.fill").foregroundColor(
-                                .red
-                            )
-                            .padding(6)
+                    url: URL(string: movie.poster),
+                    transaction: Transaction(animation: .easeInOut)
+                ) { phase in
+                    Group {
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } else {
+                            ProgressView()  // Loading state
                         }
                     }
-                } placeholder: {
-                    ProgressView()
+                    .overlay(
+                        Group {
+                            if movie.isFavorite {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                                    .padding(6)
+                            }
+                        },
+                        alignment: .bottomTrailing
+                    )
                 }
                 .frame(width: 150, height: 220)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-                .onTapGesture(count: 2) {
+                .background(Color.clear)
+                .cornerRadius(8)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(PlainButtonStyle())
+            .highPriorityGesture(
+                TapGesture(count: 2).onEnded {
                     movie.isFavorite.toggle()
                 }
-            }
-            .navigationTransition(
-                .slide.combined(with: .fade(.in))
             )
+
             Text(movie.title)
                 .font(.headline)
                 .lineLimit(1)
         }
         .frame(width: 150, height: 260)
-        .enableInjection()
     }
 
     #if DEBUG

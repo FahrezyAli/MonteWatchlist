@@ -89,27 +89,46 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(allGenres, id: \.self) { genre in
-                            Button(genre) {
-                                selectedGenre = genre
-                            }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(
-                                selectedGenre == genre
-                                    ? (colorScheme == .dark
-                                        ? Color.blue.opacity(0.7) : Color.blue)
-                                    : (colorScheme == .dark
-                                        ? Color.gray.opacity(0.4)
-                                        : Color.gray.opacity(0.2))
+                            Button(
+                                action: {
+                                    selectedGenre = genre
+                                },
+                                label: {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .fill(
+                                                selectedGenre == genre
+                                                    ? (colorScheme == .dark
+                                                        ? Color.blue.opacity(
+                                                            0.7
+                                                        )
+                                                        : Color.blue)
+                                                    : (colorScheme == .dark
+                                                        ? Color.gray.opacity(
+                                                            0.4
+                                                        )
+                                                        : Color.gray.opacity(
+                                                            0.2
+                                                        ))
+                                            )
+
+                                        Text(genre)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 8)
+                                            .foregroundColor(
+                                                selectedGenre == genre
+                                                    ? Color.white
+                                                    : (colorScheme == .dark
+                                                        ? Color.white.opacity(
+                                                            0.9
+                                                        )
+                                                        : Color.primary)
+                                            )
+                                    }
+                                    .fixedSize()  // Prevents unwanted stretching
+                                }
                             )
-                            .foregroundColor(
-                                selectedGenre == genre
-                                    ? Color.white
-                                    : (colorScheme == .dark
-                                        ? Color.white.opacity(0.9)
-                                        : Color.primary)
-                            )
-                            .cornerRadius(20)
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                     .padding(.horizontal)
@@ -145,7 +164,8 @@ struct HomeView: View {
                     ScrollView {
                         LazyVGrid(
                             columns: [
-                                GridItem(.flexible()), GridItem(.flexible()),
+                                GridItem(.flexible()),
+                                GridItem(.flexible())
                             ],
                             spacing: 16
                         ) {
@@ -157,7 +177,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationTitle("Monte's Watchlist")
+            .navigationTitle("Monte's Watchlist test")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
