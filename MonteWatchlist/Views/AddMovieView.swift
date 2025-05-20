@@ -58,8 +58,7 @@ struct AddMovieView: View {
                         HStack {
                             CachedAsyncImage(
                                 url: URL(string: selectedMovie.poster)
-                            ) {
-                                image in
+                            ) { image in
                                 image.resizable()
                             } placeholder: {
                                 Color.gray
@@ -81,7 +80,7 @@ struct AddMovieView: View {
                                     Image(systemName: "xmark.circle.fill")
                                         .foregroundColor(.gray)
                                 }
-                            )
+                            ).buttonStyle(PlainButtonStyle())
                         }
                         .padding(.horizontal)
                     }
@@ -132,8 +131,7 @@ struct AddMovieView: View {
                                     HStack {
                                         CachedAsyncImage(
                                             url: URL(string: movie.poster)
-                                        ) {
-                                            image in
+                                        ) { image in
                                             image.resizable()
                                         } placeholder: {
                                             Color.gray
